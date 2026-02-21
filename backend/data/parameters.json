@@ -1,0 +1,112 @@
+[
+    {
+        "name": "coal_consumption",
+        "display_name": "Coal Consumption",
+        "unit": "t/h",
+        "category": "input",
+        "section": "Energy",
+        "applicable_assets": [
+            "boiler_1",
+            "kiln_1"
+        ]
+    },
+    {
+        "name": "gas_consumption",
+        "display_name": "Natural Gas Consumption",
+        "unit": "m3/h",
+        "category": "input",
+        "section": "Energy",
+        "applicable_assets": [
+            "boiler_2"
+        ]
+    },
+    {
+        "name": "steam_generation",
+        "display_name": "Steam Generation",
+        "unit": "t/h",
+        "category": "output",
+        "section": "Production",
+        "applicable_assets": [
+            "boiler_1",
+            "boiler_2"
+        ]
+    },
+    {
+        "name": "electricity_output",
+        "display_name": "Electricity Output",
+        "unit": "MW",
+        "category": "output",
+        "section": "Production",
+        "applicable_assets": [
+            "turbine_1"
+        ]
+    },
+    {
+        "name": "product_yield",
+        "display_name": "Product Yield",
+        "unit": "t/h",
+        "category": "output",
+        "section": "Production",
+        "applicable_assets": [
+            "product_line_1",
+            "kiln_1"
+        ]
+    },
+    {
+        "name": "co2_emissions",
+        "display_name": "CO2 Emissions",
+        "unit": "t/h",
+        "category": "emission",
+        "section": "Environmental",
+        "applicable_assets": [
+            "boiler_1",
+            "boiler_2",
+            "kiln_1"
+        ]
+    },
+    {
+        "name": "nox_emissions",
+        "display_name": "NOx Emissions",
+        "unit": "mg/Nm3",
+        "category": "emission",
+        "section": "Environmental",
+        "applicable_assets": [
+            "boiler_1",
+            "kiln_1"
+        ]
+    },
+    {
+        "name": "boiler_efficiency",
+        "display_name": "Boiler Efficiency",
+        "unit": "%",
+        "category": "calculated",
+        "section": "Performance",
+        "applicable_assets": [
+            "boiler_1",
+            "boiler_2"
+        ]
+    },
+    {
+        "name": "overall_efficiency",
+        "display_name": "Overall Plant Efficiency",
+        "unit": "%",
+        "category": "calculated",
+        "section": "Performance",
+        "applicable_assets": [
+            "boiler_1",
+            "boiler_2",
+            "turbine_1",
+            "kiln_1"
+        ]
+    },
+    {
+        "name": "carbon_intensity",
+        "display_name": "Carbon Intensity",
+        "unit": "kg CO2 / t product",
+        "category": "calculated",
+        "section": "ESG Credentials",
+        "applicable_assets": [
+            "product_line_1"
+        ]
+    }
+]

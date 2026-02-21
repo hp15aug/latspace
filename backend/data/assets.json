@@ -1,0 +1,27 @@
+[
+    {
+        "name": "boiler_1",
+        "display_name": "Main Coal Boiler",
+        "type": "boiler"
+    },
+    {
+        "name": "boiler_2",
+        "display_name": "Secondary Gas Boiler",
+        "type": "boiler"
+    },
+    {
+        "name": "turbine_1",
+        "display_name": "Steam Turbine High Pressure",
+        "type": "turbine"
+    },
+    {
+        "name": "kiln_1",
+        "display_name": "Rotary Kiln A",
+        "type": "kiln"
+    },
+    {
+        "name": "product_line_1",
+        "display_name": "Main Product Line",
+        "type": "product"
+    }
+]
