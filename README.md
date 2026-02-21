@@ -1,5 +1,25 @@
 # LatSpace: Industrial ESG Platform
 
+**Track Chosen:** Track B: Parameter Onboarding Wizard (Full-Stack)  
+**Why this track?** I chose this track because transforming a rigid, easily broken Excel workflow into a dynamic, intuitive web experience perfectly highlights my strengths in handling complex state management and robust client-side validation. It allows me to showcase a polished, resilient solution that directly solves the core user frustration of onboarding parameters and formulas interactively.
+
+---
+
+## Assignment Details
+
+### Architecture Decisions & Tradeoffs
+- **Next.js & React Hook Form + Zod (Frontend):** Selected to handle the progressive disclosure wizard. This provides rigorous, instant client-side validation for complex nested relationships (like verifying mathematical formulas against available parameters) before any API interaction.
+- **FastAPI & Python `ast` (Backend):** Chosen for its exceptional performance, typing, and auto-generated OpenAPI documentation. I deliberately used the native `ast` module to safely parse and validate mathematical expressions, avoiding risky alternatives like `eval()`.
+- **In-Memory Data Architecture (Tradeoff):** To streamline the setup and review process for this assignment, I opted for structured, in-memory mock data (for parameters/assets) rather than scaffolding a full relational database (PostgreSQL/SQLite). The REST API handles this smoothly and could be trivially swapped out for a fully-fledged ORM later.
+- **Client-Side Wizard State (Tradeoff):** The wizard state is maintained entirely on the client until the final "Deploy" step. This avoids writing partial or invalid states to the database, but it does mean a hard browser refresh will clear the user's progress.
+
+### What I'd Improve with More Time
+- **Persistent Drafts & Auto-Saving:** I would introduce a database to save intermediate wizard progress (drafts) locally or server-side, preventing users from losing potentially hours of configuration if they close their tab.
+- **Intelligent Formula Editor:** I would replace the standard formula input with an advanced editor featuring autocomplete for valid variables (based on selected assets) and real-time syntax highlighting.
+- **Automated E2E Testing:** Add a suite of end-to-end tests via Cypress or Playwright to simulate extreme edge cases across the multi-step form and thoroughly test formula validation under varying user scenarios.
+
+---
+
 LatSpace is a full-stack, wizard-based application designed to elegantly guide industrial operations managers through the complex process of onboarding their facilities, physical assets, and environmental monitoring parameters into the LatSpace ecosystem.
 
 This repository contains the complete source code for both the frontend user interface and the backend REST API, configured for seamless local development and production-ready containerization.
@@ -16,35 +36,47 @@ For detailed information regarding the individual services, please consult their
 - 📖 [**Frontend Documentation**](./frontend/README.md) — (Features, UI flows, Tech Stack, Next.js Setup)
 - 📖 [**Backend Documentation**](./backend/README.md) — (API Endpoints, Python Setup, Formula Engine)
 
-## Quick Start & Deployment
+## Quick Start & Setup Instructions
 
-The entire LatSpace stack is fully containerized using Docker. The easiest and recommended way to run the project is using Docker Compose.
+There are two ways to run the LatSpace application: using Docker Compose (Recommended), or running the services manually.
 
-### Prerequisites
-- [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) installed on your machine.
-- Ensure the Docker daemon is actively running.
+### 1. Running with Docker Compose (Recommended)
 
-### Running with Docker Compose
+**Prerequisites:** [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) installed.
 
 From the root directory of this repository, simply run:
 
 ```bash
 docker compose up --build
 ```
+This command will build and launch both the Python backend on **Port 8000** and the Next.js frontend on **Port 3000**, with them communicating on an internal network.
+👉 Access the app at: **http://localhost:3000**
 
-This command will:
-1. Build the lightweight Python backend image and launch it on **Port 8000**.
-2. Build the optimized Next.js standalone frontend image and launch it on **Port 3000**.
-3. Establish an internal bridged network between the two containers for seamless server-side communication.
+*(To elegantly stop, run: `docker compose down`)*
 
-Once the build is complete and both containers are running, you can access the application at:
-👉 **http://localhost:3000**
+### 2. Running Manually (Local Development)
 
-### Shutting Down
-To gracefully stop the containers, use:
+If you prefer to run the services bare-metal without Docker:
+
+**Backend (Python + FastAPI)**
+Launch a terminal, and start the Uvicorn server:
 ```bash
-docker compose down
+cd backend
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn application.main:app --reload
 ```
+👉 The API will be available at **http://localhost:8000**
+
+**Frontend (Next.js)**
+Open a separate terminal to run the UI:
+```bash
+cd frontend
+npm install
+npm run dev
+```
+👉 The web app will be available at **http://localhost:3000**
 
 ## Tech Stack Highlights
 
