@@ -6,6 +6,21 @@ interface LoadingModalProps {
 }
 
 const LoadingModal: React.FC<LoadingModalProps> = ({ isLoading }) => {
+    // Wake up the backend server on Render (or other free tiers with cold starts)
+    useEffect(() => {
+        if (isLoading) {
+            const wakeupServer = async () => {
+                try {
+                    // Ping the root health check endpoint to wake up the server
+                    await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL || process.env.BACKEND_URL || 'http://localhost:8000'}/`);
+                } catch (e) {
+                    // Ignore wake-up errors, it's just a background ping
+                }
+            };
+            wakeupServer();
+        }
+    }, [isLoading]);
+
     return (
         <AnimatePresence>
             {isLoading && (
