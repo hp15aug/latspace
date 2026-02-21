@@ -37,7 +37,7 @@ export default function Step3Parameters() {
                 const typeQuery = uniqueAssetTypes.join(",");
 
                 // Standard fetch logic
-                const response = await fetch(`${process.env.BACKEND_URL || ''}/api/parameters?asset_types=${typeQuery}`);
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL || process.env.BACKEND_URL || ''}/api/parameters?asset_types=${typeQuery}`);
 
                 // Fallback for demo/development if the API isn't running
                 let data: FetchParameterResponse[] = [];

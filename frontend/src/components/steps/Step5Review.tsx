@@ -51,7 +51,7 @@ export default function Step5Review() {
         setErrorMessage("");
 
         try {
-            const response = await fetch(`${process.env.BACKEND_URL || ''}/api/onboarding`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL || process.env.BACKEND_URL || ''}/api/onboarding`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: jsonString
